@@ -79,14 +79,37 @@ class TardisInteriorCorridorA(Room):
         You come to an intersection of the corridors, from here you can go
         north, south, west, or east. All of the corridors look the same to you."""))
 
-room1 = TardisControlRoom()
-room2 = Room()
 
-for i in range(3):
-    room1.title()
-    if room1.visited == False:
-        room1.v_description()
-    elif room1.visited == True:
-        room1.s_description()
-    get_u = input("> ")
-    room1.visited = True
+class Hero(object):
+
+    def __init__(self, name, starting_room):
+        self.name = name
+        self.current_room = starting_room
+        self.pockets = []
+
+    def inventory(self):
+        print("\nYou are carrying:")
+        if self.pockets:
+            for i in self.pockets:
+                print(f"a {i}")
+            print()
+        else:
+            print("nothing\n")
+
+
+
+room1 = TardisControlRoom()
+room2 = TardisInteriorCorridorA()
+
+u_name = input("What is your name?\n> ")
+companion = Hero(u_name, room1)
+
+print(companion.name)
+print(companion.current_room)
+companion.inventory()
+
+companion.pockets.append("sonic screwdriver")
+companion.pockets.append("key card")
+
+companion.inventory()
+
