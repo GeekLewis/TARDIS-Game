@@ -96,7 +96,11 @@ class Hero(object):
         else:
             print("nothing\n")
 
-
+def parser ():
+    while True:
+        action = input("> ").lower().strip()
+        if action == "e" or "east" or "go e" or "go east":
+            companion
 
 def main ():
 
