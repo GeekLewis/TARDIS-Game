@@ -98,18 +98,21 @@ class Hero(object):
 
 
 
-room1 = TardisControlRoom()
-room2 = TardisInteriorCorridorA()
+def main ():
 
-u_name = input("What is your name?\n> ")
-companion = Hero(u_name, room1)
+    tardis_control_room = TardisControlRoom()
+    tardis_interior_corridorA = TardisInteriorCorridorA()
+    u_name = input("What is your name?\n> ")
+    companion = Hero(u_name, tardis_control_room)
 
-print(companion.name)
-print(companion.current_room)
-companion.inventory()
+main()
 
-companion.pockets.append("sonic screwdriver")
-companion.pockets.append("key card")
-
-companion.inventory()
+#print(companion.name)
+#print(companion.current_room)
+#companion.inventory()
+#
+#companion.pockets.append("sonic screwdriver")
+#companion.pockets.append("key card")
+#
+#companion.inventory()
 
