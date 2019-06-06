@@ -29,13 +29,20 @@ class Room(object):
         
     def east(self):
         print("\nYou can't go that way.\n") 
-        print("hello")
 
     def up(self):
         print("\nYou can't go that way.\n")
         
     def down(self):
-        print("\nYou can't go that way.\n")     
+        print("\nYou can't go that way.\n")
+
+    def enter(self):
+        if not self.visited:
+            self.v_description()
+            self.visited = True
+        else:
+            self.s_description()
+
 
 class TardisControlRoom(Room):
     
@@ -62,7 +69,11 @@ class TardisControlRoom(Room):
         print(dedent("""
         The Doctor is here fiddling with some controls on the console and
         looking perplexed."""))
-    
+
+    def east(self):
+        return(tardis_interior_corridorA)
+
+
 class TardisInteriorCorridorA(Room):
     
     def title(self):
@@ -78,6 +89,7 @@ class TardisInteriorCorridorA(Room):
         print(dedent("""
         You come to an intersection of the corridors, from here you can go
         north, south, west, or east. All of the corridors look the same to you."""))
+
 
 
 class Hero(object):
@@ -96,11 +108,6 @@ class Hero(object):
         else:
             print("nothing\n")
 
-def parser ():
-    while True:
-        action = input("> ").lower().strip()
-        if action == "e" or "east" or "go e" or "go east":
-            companion
 
 def main ():
 
@@ -108,6 +115,14 @@ def main ():
     tardis_interior_corridorA = TardisInteriorCorridorA()
     u_name = input("What is your name?\n> ")
     companion = Hero(u_name, tardis_control_room)
+    tardis_control_room.enter()
+    while True:
+        action = input("> ").lower().strip()
+        if action == "e" or "east" or "go e" or "go east":
+            next_room = companion.current_room.east()
+            if next_room != companion.current_room:
+                companion.current_room = next_room
+                companion.current_room.enter()
 
 main()
 
