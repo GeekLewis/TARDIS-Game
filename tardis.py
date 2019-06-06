@@ -7,9 +7,9 @@ def cls():
     
 class Room(object):
     
-    def __init__(self):
+    def __init__(self, objects=[]):
         self.visited = False
-        self.objects = []
+        self.objects = objects
         
     def title(self):
         cls()
@@ -56,7 +56,7 @@ class Room(object):
                         print(f", a {self.objects[i]}", end='')
 
 class TardisControlRoom(Room):
-    
+
     def title(self):
         cls()
         print("\nThe TARDIS Control Room")
@@ -82,7 +82,7 @@ class TardisControlRoom(Room):
         looking perplexed."""))
 
     def east(self):
-        return(tardis_interior_corridor_a)
+        return tardis_interior_corridor_a
 
 
 class TardisInteriorCorridorA(Room):
@@ -122,7 +122,7 @@ class Hero(object):
 
 def main ():
 
-    tardis_control_room = TardisControlRoom()
+    tardis_control_room = TardisControlRoom(['sonic screwdriver'])
     tardis_interior_corridor_a = TardisInteriorCorridorA()
     u_name = input("What is your name?\n> ")
     companion = Hero(u_name, tardis_control_room)
