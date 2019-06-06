@@ -42,7 +42,18 @@ class Room(object):
             self.visited = True
         else:
             self.s_description()
-
+        if self.objects:
+            print('You can also see ', end='')
+            if len(self.objects) == 1:
+                print(f"a {self.objects[0]} here.")
+            else:
+                for i in range(len(self.objects)):
+                    if i == 0:
+                        print(f"a {self.objects[i]}", end='')
+                    elif i == len(self.objects) - 1:
+                        print(f", and a {self.objects[i]} here.")
+                    else:
+                        print(f", a {self.objects[i]}", end='')
 
 class TardisControlRoom(Room):
     
@@ -71,7 +82,7 @@ class TardisControlRoom(Room):
         looking perplexed."""))
 
     def east(self):
-        return(tardis_interior_corridorA)
+        return(tardis_interior_corridor_a)
 
 
 class TardisInteriorCorridorA(Room):
@@ -112,7 +123,7 @@ class Hero(object):
 def main ():
 
     tardis_control_room = TardisControlRoom()
-    tardis_interior_corridorA = TardisInteriorCorridorA()
+    tardis_interior_corridor_a = TardisInteriorCorridorA()
     u_name = input("What is your name?\n> ")
     companion = Hero(u_name, tardis_control_room)
     tardis_control_room.enter()
